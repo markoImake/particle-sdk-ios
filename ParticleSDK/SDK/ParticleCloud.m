@@ -539,6 +539,7 @@ static NSString *const kDefaultoAuthClientSecret = @"particle";
 
     NSMutableDictionary *params = [NSMutableDictionary new]; //[self defaultParams];
     params[@"id"] = deviceID;
+    params[@"request_transfer"] = @"true";
 
     [ParticleLogger logInfo:NSStringFromClass([self class]) format:@"POST %@, params = %@", @"/v1/devices", params];
     
