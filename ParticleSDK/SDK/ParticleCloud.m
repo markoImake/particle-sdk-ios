@@ -538,8 +538,13 @@ static NSString *const kDefaultoAuthClientSecret = @"particle";
     }
 
     NSMutableDictionary *params = [NSMutableDictionary new]; //[self defaultParams];
-    params[@"id"] = deviceID;
+//     params[@"id"] = deviceID;
     params[@"request_transfer"] = @"true";
+    
+    [self.manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+   
+    NSString *myString = [NSString stringWithFormat:@"value1=%@", deviceID];
+    [self.manager setHTTPBody:[myString dataUsingEncoding:NSUTF8StringEncoding]];
 
     [ParticleLogger logInfo:NSStringFromClass([self class]) format:@"POST %@, params = %@", @"/v1/devices", params];
     
